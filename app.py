@@ -14,14 +14,17 @@ import json
 import os
 import sys
 
+# Fix pickle compatibility for scikit-learn loss module
+try:
+    import sklearn._loss as _loss
+    sys.modules["_loss"] = _loss
+except ImportError:
+    pass
+
 import joblib
 import numpy as np
 import pandas as pd
-import sklearn.ensemble._loss as _loss
 from flask import Flask, jsonify, render_template, request
-
-# Alias _loss module for unpickling compatibility
-sys.modules["_loss"] = _loss
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
