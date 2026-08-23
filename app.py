@@ -12,14 +12,6 @@ from __future__ import annotations
 
 import json
 import os
-import sys
-
-# Fix pickle compatibility for scikit-learn loss module
-try:
-    import sklearn._loss as _loss
-    sys.modules["_loss"] = _loss
-except ImportError:
-    pass
 
 import joblib
 import numpy as np
